@@ -1,3 +1,6 @@
+// Faz o site começar na página de início automaticamente
+mostrarPagina('inicio');
+
 function mostrarPagina(id){
 
 document.querySelectorAll(".pagina").forEach(function(pagina){

@@ -678,6 +678,35 @@ Container da stack abaixo dos botões
     .menu a {
         font-size: 14px;
     }
+
+/* Correção específica para a página Sobre Mim no Mobile */
+#sobre.pagina {
+    height: auto;          /* Permite que a página cresça com o texto */
+    min-height: 100vh;     /* Garante que o fundo cubra a tela toda */
+    padding: 100px 15px 50px; /* Espaço para o menu não cobrir o H1 */
+    display: block;        /* Muda de flex para block para o scroll funcionar melhor */
+}
+
+#sobre .conteudo {
+    width: 95%;            /* Quase toda a largura da tela */
+    padding: 30px 20px;    /* Reduz o padding de 50px para 20px */
+    margin: 0 auto;        /* Centraliza o card */
+    max-width: none;       /* Remove o limite de 850px */
+}
+
+#sobre h1 {
+    font-size: 2.2rem;     /* Diminui o título que era 3.5rem */
+    text-align: center;
+    line-height: 1.2;
+}
+
+#sobre p {
+    font-size: 1rem;       /* Ajusta o tamanho da fonte para leitura no celular */
+    text-align: left;      /* Texto alinhado à esquerda é melhor no mobile */
+    margin-bottom: 15px;
+}
+
+
 }
 
 /* Adicione esta classe dentro do seu CSS */

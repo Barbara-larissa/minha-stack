@@ -236,7 +236,8 @@ header {
     border-radius: 30px;
     font-weight: 600;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    animation: pulsar 2s infinite; /* Roda a cada 2 segundos para sempre */
+    animation: pulsar 2s infinite;
+    /* Roda a cada 2 segundos para sempre */
     transition: 0.3s;
 }
 
@@ -252,9 +253,11 @@ header {
     0% {
         box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
     }
+
     70% {
         box-shadow: 0 0 0 15px rgba(79, 70, 229, 0);
     }
+
     100% {
         box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
     }
@@ -523,24 +526,24 @@ Container da stack abaixo dos botões
 
 .mini-stack {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     /* 1. Diminuir o espaço entre os ícones para 10px ajuda a caber todos */
-    gap: 10px;           
-    margin-top: 60px;   
-    justify-content: flex-start; 
+    gap: 10px;
+    margin-top: 60px;
+    justify-content: flex-start;
     /* 2. O 'nowrap' impede que o Firebase pule para a linha de baixo */
-    flex-wrap: nowrap;   
+    flex-wrap: nowrap;
     width: 100%;
 }
 
 .item-stack-mini {
     /* 3. Reduzir a largura e altura de 75px para 65px libera espaço na linha */
-    width: 65px;         
-    height: 65px;        
-    background: rgba(255, 255, 255, 0.1); 
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: 15px; 
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -550,14 +553,16 @@ Container da stack abaixo dos botões
 
 .item-stack-mini img {
     /* 4. Ajustar o tamanho da imagem interna para acompanhar o card menor */
-    width: 38px;         
+    width: 38px;
     height: 38px;
     object-fit: contain;
 }
+
 /* --- Efeito Hover --- */
 .item-stack-mini:hover {
     transform: scale(1.1) translateY(-10px);
-    background: rgba(255, 255, 255, 0.35); /* Fica mais clarinho ao passar o mouse */
+    background: rgba(255, 255, 255, 0.35);
+    /* Fica mais clarinho ao passar o mouse */
     border-color: #ffffff;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
@@ -679,32 +684,43 @@ Container da stack abaixo dos botões
         font-size: 14px;
     }
 
-/* Correção específica para a página Sobre Mim no Mobile */
-#sobre.pagina {
-    height: auto;          /* Permite que a página cresça com o texto */
-    min-height: 100vh;     /* Garante que o fundo cubra a tela toda */
-    padding: 100px 15px 50px; /* Espaço para o menu não cobrir o H1 */
-    display: block;        /* Muda de flex para block para o scroll funcionar melhor */
-}
+    /* Correção específica para a página Sobre Mim no Mobile */
+    #sobre.pagina {
+        height: auto;
+        /* Permite que a página cresça com o texto */
+        min-height: 100vh;
+        /* Garante que o fundo cubra a tela toda */
+        padding: 100px 15px 50px;
+        /* Espaço para o menu não cobrir o H1 */
+        display: block;
+        /* Muda de flex para block para o scroll funcionar melhor */
+    }
 
-#sobre .conteudo {
-    width: 95%;            /* Quase toda a largura da tela */
-    padding: 30px 20px;    /* Reduz o padding de 50px para 20px */
-    margin: 0 auto;        /* Centraliza o card */
-    max-width: none;       /* Remove o limite de 850px */
-}
+    #sobre .conteudo {
+        width: 95%;
+        /* Quase toda a largura da tela */
+        padding: 30px 20px;
+        /* Reduz o padding de 50px para 20px */
+        margin: 0 auto;
+        /* Centraliza o card */
+        max-width: none;
+        /* Remove o limite de 850px */
+    }
 
-#sobre h1 {
-    font-size: 2.2rem;     /* Diminui o título que era 3.5rem */
-    text-align: center;
-    line-height: 1.2;
-}
+    #sobre h1 {
+        font-size: 2.2rem;
+        /* Diminui o título que era 3.5rem */
+        text-align: center;
+        line-height: 1.2;
+    }
 
-#sobre p {
-    font-size: 1rem;       /* Ajusta o tamanho da fonte para leitura no celular */
-    text-align: left;      /* Texto alinhado à esquerda é melhor no mobile */
-    margin-bottom: 15px;
-}
+    #sobre p {
+        font-size: 1rem;
+        /* Ajusta o tamanho da fonte para leitura no celular */
+        text-align: left;
+        /* Texto alinhado à esquerda é melhor no mobile */
+        margin-bottom: 15px;
+    }
 
 
 }
@@ -727,27 +743,31 @@ Container da stack abaixo dos botões
 
 
 /* Seleciona o iframe dentro da seção de currículo */
-    #curriculo iframe {
-        display: none !important; /* Remove o PDF da visualização no mobile */
-    }
+#curriculo iframe {
+    display: none !important;
+    /* Remove o PDF da visualização no mobile */
+}
 
-    /* Ajusta o container do currículo para focar no botão */
-    #curriculo .conteudo {
-        min-height: 40vh; /* Dá uma altura mínima para o card não ficar "esmagado" */
-        justify-content: center;
-    }
+/* Ajusta o container do currículo para focar no botão */
+#curriculo .conteudo {
+    min-height: 40vh;
+    /* Dá uma altura mínima para o card não ficar "esmagado" */
+    justify-content: center;
+}
 
-    /* Estiliza o botão "Abrir em nova aba" para o mobile */
-    #curriculo .btn-outline {
-        display: block;
-        width: 100%;
-        max-width: 280px;
-        margin: 20px auto 0;
-        padding: 16px;
-        font-size: 1.1rem;
-        background: var(--cor-primaria); /* Dá cor ao botão no mobile para facilitar o clique */
-        color: white;
-    }
+/* Estiliza o botão "Abrir em nova aba" para o mobile */
+#curriculo .btn-outline {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 20px auto 0;
+    padding: 16px;
+    font-size: 1.1rem;
+    background: var(--cor-primaria);
+    /* Dá cor ao botão no mobile para facilitar o clique */
+    color: white;
+}
+
 /*==================PROJETOS============*/
 /* Ajuste da seção Projetos para permitir scroll */
 #projetos.pagina {
@@ -797,12 +817,13 @@ Container da stack abaixo dos botões
     font-size: 12px;
     padding: 10px 15px;
 }
+
 .mini-stack {
-        justify-content: center;
-        /* No celular, permitimos quebrar linha para não bugar o layout */
-        flex-wrap: wrap; 
-        gap: 10px;
-    }
+    justify-content: center;
+    /* No celular, permitimos quebrar linha para não bugar o layout */
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
 
 

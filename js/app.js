@@ -1,17 +1,29 @@
-// Faz o site começar na página de início automaticamente
-mostrarPagina('inicio');
-
-function mostrarPagina(id){
-
-document.querySelectorAll(".pagina").forEach(function(pagina){
-pagina.classList.remove("ativa");
+// --- MOSTRA A PÁGINA CORRETA AO CARREGAR ---
+document.addEventListener("DOMContentLoaded", () => {
+    const hash = window.location.hash.replace("#", ""); // pega #projetos -> projetos
+    if (hash && document.getElementById(hash)) {
+        mostrarPagina(hash); // abre a página do hash
+    } else {
+        mostrarPagina("inicio"); // padrão
+    }
 });
 
-document.getElementById(id).classList.add("ativa");
+// --- FUNÇÃO PARA MUDAR DE PÁGINA ---
+function mostrarPagina(id){
+    // Remove 'ativa' de todas as páginas
+    document.querySelectorAll(".pagina").forEach(function(pagina){
+        pagina.classList.remove("ativa");
+    });
 
+    // Ativa a página selecionada
+    document.getElementById(id).classList.add("ativa");
+
+    // Atualiza o hash da URL sem recarregar a página
+    window.location.hash = id;
 }
+
 /*================
-BALAO
+BALÃO
 ==================*/
 const areaPerfil = document.querySelector('.perfil');
 const oBalao = document.querySelector('.balao-fala');
@@ -20,13 +32,10 @@ const botoes = document.querySelectorAll('.btn');
 // --- Lógica do Balão no Mobile ---
 areaPerfil.addEventListener('touchstart', function() {
     oBalao.classList.add('visivel');
-
-    // Faz o balão sumir sozinho após 2 segundos (tempo de leitura)
     setTimeout(() => {
         oBalao.classList.remove('visivel');
     }, 2000); 
 }, {passive: true});
-
 
 // --- Lógica de Animação dos Botões no Mobile ---
 botoes.forEach(btn => {

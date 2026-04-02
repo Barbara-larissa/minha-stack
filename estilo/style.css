@@ -1,3 +1,4 @@
+
 /* ==========================================
    VARIÁVEIS DE CORES
 ========================================== */
@@ -30,35 +31,42 @@
 /* ==========================================
    BODY
 ========================================== */
-
 body {
     background: var(--gradiente-fundo);
     background-attachment: fixed;
-    min-height: 100vh;
-    overflow-x: hidden;
+    min-height: 100vh; /* Permite que a página cresça */
+    width: 100vw;
+    overflow: auto; /* Permite rolar normalmente */
 }
+
+
 
 /* ==========================================
    HEADER / MENU
 ========================================== */
 header {
-    position: absolute;
-    top: 30px;
+    position: fixed;
+    top: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
     z-index: 10000;
+    background: rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+
+    display: flex;           /* Ativa flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
 }
 
+/* Opcional: aumenta o padding do menu pra mais “respiro” */
 .menu {
     display: flex;
     gap: 30px;
     background: rgba(0, 0, 0, 0.25);
-    padding: 12px 30px;
+    padding: 15px 35px; /* maior que antes */
     border-radius: 40px;
     backdrop-filter: blur(10px);
 }
-
 .menu a {
     text-decoration: none;
     color: white;
@@ -352,25 +360,27 @@ header {
 
 
 
-/*=============
-PAGINAS
-==============*/
+
+
+
+
+/* ==========================================
+   CONFIGURAÇÃO GLOBAL DAS PÁGINAS
+========================================== */
 .pagina {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+    height: 100vh; /* Ocupa a tela toda */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
-    transition: 0.4s;
+    transition: opacity 0.4s ease;
+    
+    /* Importante: permite rolar o que estiver dentro da página */
+    overflow-y: auto; 
+    overflow-x: hidden;
 }
 
 .pagina.ativa {
@@ -379,10 +389,52 @@ PAGINAS
     pointer-events: auto;
 }
 
-.pagina iframe {
-    max-width: 100%;
-    border-radius: 20px;
+/* ==========================================
+   AJUSTE ESPECÍFICO PARA PROJETOS (DESTRAVA ROLAGEM)
+========================================== */
+#projetos.pagina {
+    position: relative; /* permite scroll normal */
+    height: auto;       /* deixa a altura crescer com o conteúdo */
+    padding: 180px 20px 80px; /* espaço para o header não cobrir */
+    overflow-y: auto; 
 }
+/* Mantém a Home e Sobre centralizadas e fixas */
+#home.pagina, #sobre.pagina, #curriculo.pagina {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Home não rola */
+}
+
+/* Estilo da barra de rolagem (opcional para ficar bonito) */
+.pagina::-webkit-scrollbar {
+    width: 8px;
+}
+.pagina::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*========================
@@ -566,6 +618,35 @@ Container da stack abaixo dos botões
     border-color: #ffffff;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
+
+
+/* INÍCIO */
+#inicio {
+    min-height: 100vh; /* ocupa pelo menos a tela toda */
+}
+
+/* PROJETOS */
+#projetos {
+    min-height: 100vh;
+    padding-top: 120px; /* dá espaço pro header não cobrir */
+}
+
+/* SOBRE */
+#sobre {
+    min-height: 100vh;
+    padding-top: 120px;
+}
+
+/* CONTATO */
+#contato {
+    min-height: 100vh;
+    padding-top: 120px;
+}
+
+
+
+
+
 
 
 /* ==========================================
@@ -827,6 +908,85 @@ Container da stack abaixo dos botões
 
 
 
+
+/* ==========================================
+   CONFIGURAÇÃO DO VÍDEO YOUTUBE (EMBED)
+========================================== */
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.card-projeto {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 15px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-projeto h3 {
+    color: var(--cor-primaria);
+    margin-top: 10px;
+}
+
+.card-projeto p {
+    flex-grow: 1;
+    margin: 8px 0 12px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.card-projeto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.card-projeto .links {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn {
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.btn-principal:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
 /* CELULAR PEQUENO */
 @media (max-width: 480px) {
     .conteudo h1 {
@@ -843,5 +1003,12 @@ Container da stack abaixo dos botões
         width: 130px;
         white-space: normal;
         text-align: center;
+    }
+       header {
+        top: 30px;
+    }
+    .menu {
+        padding: 10px 20px;
+        gap: 15px;
     }
 }

@@ -14,16 +14,13 @@
             <div class="menu">
                 <a onclick="mostrarPagina('inicio')">Início</a>
                 <a onclick="mostrarPagina('projetos')">Projetos</a>
-
-                <a href="./certificado/certificado.pdf" target="_blank" class="btn-certificado">
-                    Certificados
-                </a>
-
+                <a onclick="mostrarPagina('certificado')" class="btn-certificado">Certificados</a>
                 <a onclick="mostrarPagina('sobre')">Sobre mim</a>
                 <a onclick="mostrarPagina('contato')">Contato</a>
             </div>
         </nav>
     </header>
+
     <!-- INICIO -->
     <section id="inicio" class="pagina ativa hero">
         <div class="container">
@@ -39,7 +36,7 @@
                 <div class="botoes">
                     <a href="https://wa.me/5543996818242?text=Olá%20Barbara,%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto!"
                         target="_blank" class="btn btn-principal">
-                      <section>  Vamos nós conectar ?</section>
+                        <section> Vamos nós conectar ?</section>
                     </a>
 
                     <a href="https://github.com/barbara-larissa" target="_blank" class="btn btn-outline">
@@ -51,26 +48,40 @@
                     </a>
                 </div>
 
-                <div class="mini-stack">
-                    <div class="item-stack-mini"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                            title="HTML5"></div>
-                    <div class="item-stack-mini"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                            title="CSS3"></div>
-                    <div class="item-stack-mini"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                            title="JavaScript"></div>
-                    <div class="item-stack-mini"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" title="PHP">
-                    </div>
-                    <div class="item-stack-mini"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                            title="MySQL"></div>
-                    <div class="item-stack-mini"><img
-                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
-                            title="Firebase"></div>
-                </div>
+              <div class="mini-stack">
+    <!-- FRONT-END -->
+    <div class="item-stack-mini">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" title="HTML5">
+    </div>
+    <div class="item-stack-mini">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" title="CSS3">
+    </div>
+    <div class="item-stack-mini">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" title="JavaScript">
+    </div>
+    <div class="item-stack-mini">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" title="React">
+    </div>
+  <div class="item-stack-mini">
+    <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" title="Tailwind CSS">
+</div>
+
+    <!-- UI / UX -->
+    <div class="item-stack-mini">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" title="UI/UX Design (Figma)">
+    </div>
+
+    <!-- BACK-END -->
+    <div class="item-stack-mini">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" title="PHP">
+    </div>
+    <div class="item-stack-mini">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" title="MySQL">
+    </div>
+    <div class="item-stack-mini">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" title="Firebase">
+    </div>
+</div>
             </div>
             <!---------- AVATAR-->
             <div class="perfil">
@@ -107,12 +118,19 @@
 
                     <!----------- PROJETO 2 ----------->
                     <div class="card-projeto">
-                        <h3>Projeto 2</h3>
-                        <p>Landing page moderna responsiva.</p>
+                        <!-- Vídeo do YouTube incorporado -->
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/hMQYXhc1-2A?si=quGkWBLmjoXVTsYJ"
+                                title="Sistema de Controle Financeiro" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                            </iframe>
+                        </div>
+                        <h3>Sistema de controle financeiro</h3>
 
                         <div class="links">
-                            <a href="#" class="btn">Ver Projeto</a>
-                            <a href="#" class="btn btn-outline" target="_blank">GitHub</a>
+                            <a href="#" class="btn btn-principal">Ver Projeto</a>
+                            <a href="https://github.com" class="btn btn-outline" target="_blank">GitHub</a>
                         </div>
                     </div>
 
@@ -184,7 +202,17 @@
             </div>
         </div>
     </section>
-
+<!-- ===========================
+   PÁGINA DE CERTIFICADOS
+=========================== -->
+<div id="certificado" class="pagina">
+    <div class="container">
+        <h1>Meus Certificados</h1>
+        <iframe src="./certificado/certificado.pdf" width="100%" height="600px"></iframe>
+        <br>
+        <button onclick="mostrarPagina('inicio')" class="btn">Voltar</button>
+    </div>
+</div>
 
     <script src="./js/app.js"></script>
 </body>

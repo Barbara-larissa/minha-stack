@@ -1,4 +1,3 @@
-
 /* ==========================================
    VARIÁVEIS DE CORES
 ========================================== */
@@ -34,28 +33,37 @@
 body {
     background: var(--gradiente-fundo);
     background-attachment: fixed;
-    min-height: 100vh; /* Permite que a página cresça */
-    width: 100vw;
-    overflow: auto; /* Permite rolar normalmente */
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    padding-top: 0;
+    /* Mude de 90px para 0 */
 }
-
-
 
 /* ==========================================
    HEADER / MENU
 ========================================== */
 header {
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 20px;
+    /* Reduzi de 30px para 20px para ficar mais elegante */
+    left: 0;
     width: 100%;
     z-index: 10000;
-    background: rgba(0,0,0,0.25);
-    backdrop-filter: blur(10px);
-    padding: 15px 0;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+}
 
-    display: flex;           /* Ativa flexbox */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center;     /* Centraliza verticalmente */
+.menu {
+    display: flex;
+    gap: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 15px 35px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Opcional: aumenta o padding do menu pra mais “respiro” */
@@ -63,10 +71,12 @@ header {
     display: flex;
     gap: 30px;
     background: rgba(0, 0, 0, 0.25);
-    padding: 15px 35px; /* maior que antes */
+    padding: 15px 35px;
+    /* maior que antes */
     border-radius: 40px;
     backdrop-filter: blur(10px);
 }
+
 .menu a {
     text-decoration: none;
     color: white;
@@ -91,12 +101,11 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    padding: 20px;
+    height: auto;
+    padding: 20px 0;
+    /* Reduzi de 40px para 20px */
     position: relative;
     z-index: 1;
-
-
 }
 
 /* CONTAINER PRINCIPAL */
@@ -115,7 +124,7 @@ header {
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
     gap: 60px;
-    margin: auto;
+    margin: 20px auto;
 }
 
 /* ==========================================
@@ -271,27 +280,17 @@ header {
     }
 }
 
-
-
-
-
-
-
-
-
-
-/* BOTÃO OUTLINE */
-
 .btn-outline {
+    background: transparent !important; /* Força a transparência */
     border: 2px solid var(--cor-primaria);
     color: var(--cor-primaria);
+    cursor: pointer;
 }
 
 .btn-outline:hover {
-    background: var(--cor-primaria);
+    background: var(--cor-primaria) !important;
     color: white;
 }
-
 /* ==========================================
    SEÇÃO PROJETOS
 ========================================== */
@@ -313,18 +312,17 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    max-width: 1100px;
-    margin: auto;
+    align-items: stretch;
 }
 
-/* CARD */
-
 .card-projeto {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    padding: 25px;
-    border-radius: 20px;
-    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container {
+    position: relative;
 }
 
 .card-projeto:hover {
@@ -359,99 +357,197 @@ header {
 }
 
 
-
-
-
-
-
 /* ==========================================
    CONFIGURAÇÃO GLOBAL DAS PÁGINAS
 ========================================== */
 .pagina {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh; /* Ocupa a tela toda */
+    display: none;
+    min-height: 100vh;
+    padding-top: 80px;
+    /* Reduza de 120px para 80px */
     opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
     transition: opacity 0.4s ease;
-    
-    /* Importante: permite rolar o que estiver dentro da página */
-    overflow-y: auto; 
-    overflow-x: hidden;
 }
 
 .pagina.ativa {
+    display: flex;
+    /* TORNA a seção presente e ocupa o topo */
     opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+}
+
+#home.pagina {
+    overflow: hidden;
+    justify-content: center;
+    /* Mantém o conteúdo da home centralizado */
+    align-items: center;
+}
+
+/* Essa é a classe que vai salvar o layout */
+/* 1. ESCONDE TUDO E ZERA O ESPAÇO */
+.pagina,
+.pagina-certificado {
+    display: none !important;
+    /* Força sumir */
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 120px;
+    box-sizing: border-box;
+}
+
+/* 2. MOSTRA APENAS A ATIVA */
+.pagina.ativa,
+.pagina-certificado.ativa {
+    display: flex !important;
+    /* Só a ativa ganha vida */
+    flex-direction: column;
+    align-items: center;
+}
+
+#certificado .container {
+    flex-direction: column;
+    /* Faz o título ficar em cima e o conteúdo embaixo */
+    align-items: center;
+    /* Centraliza tudo horizontalmente */
+    text-align: center;
+    gap: 20px;
+    /* Dá um espaço entre o título e o certificado */
+}
+
+/* Quando a página de certificados NÃO é a ativa, ela tem que sumir totalmente */
+.pagina-certificado:not(.ativa) {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+    position: absolute;
+    /* Tira do fluxo para não empurrar as outras páginas */
 }
 
 /* ==========================================
    AJUSTE ESPECÍFICO PARA PROJETOS (DESTRAVA ROLAGEM)
 ========================================== */
+/* Remova ou substitua o bloco antigo do #projetos.pagina por este: */
 #projetos.pagina {
-    position: relative; /* permite scroll normal */
-    height: auto;       /* deixa a altura crescer com o conteúdo */
-    padding: 180px 20px 80px; /* espaço para o header não cobrir */
-    overflow-y: auto; 
+    height: auto;
+    /* Deixe o conteúdo definir a altura */
+    min-height: calc(100vh - 90px);
+    /* Garante que ocupe a tela toda */
+    overflow-y: visible;
+    /* Deixe o scroll ser controlado pelo body */
+    padding: 40px 20px;
+    display: block;
+    /* Garante que o grid se comporte corretamente */
 }
+
+#projetos.pagina.ativa {
+    display: block;
+    /* O Grid funciona melhor dentro de block ou seu próprio display */
+}
+
+/* Garante que o container de projetos não fique preso ao flex centralizado */
+#projetos .container {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    flex-direction: column;
+    /* No projeto, o título fica em cima e o grid embaixo */
+    height: auto;
+}
+
 /* Mantém a Home e Sobre centralizadas e fixas */
-#home.pagina, #sobre.pagina, #curriculo.pagina {
+#home.pagina,
+#sobre.pagina,
+#curriculo.pagina {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Home não rola */
+    overflow: visible;
+    /* Home não rola */
 }
 
 /* Estilo da barra de rolagem (opcional para ficar bonito) */
 .pagina::-webkit-scrollbar {
     width: 8px;
 }
+
 .pagina::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
 }
 
+/* ==========================================
+   SEÇÃO CURRÍCULO - FOCO EM LARGURA TOTAL
+========================================== */
 
+/* 1. Ajuste da Seção (Container de Vidro) */
+#curriculo.pagina.ativa .container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 95% !important;           /* Ocupa quase toda a largura da tela */
+    max-width: 1200px !important;    /* Limite confortável para leitura */
+    height: 85vh !important;         /* Altura fixa para o PDF não sumir */
+    padding: 20px !important;
+    margin: 20px auto !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 25px !important;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*========================
-CURRICULO
-===================*/
-
+/* 2. Ajuste do Título e Botão Voltar */
 #curriculo .conteudo {
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
+}
+
+#curriculo h1 {
+    font-size: 1.8rem !important;
+    margin-bottom: 10px !important;
     text-align: center;
 }
 
+.btn-voltar {
+    align-self: center;
+    padding: 8px 20px !important;
+    font-size: 14px !important;
+    margin-bottom: 15px !important;
+    background: var(--cor-primaria);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-voltar:hover {
+    background: var(--cor-secundaria);
+    transform: scale(1.05);
+}
+
+/* 3. O PDF (Iframe) - Ocupando o espaço restante */
 #curriculo iframe {
-    max-width: 100%;
-    height: 70vh;
-    border-radius: 20px;
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    border-radius: 15px !important;
+    background: white; /* Garante fundo branco enquanto carrega o PDF */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 4. Ajuste para Mobile (Celular) */
+@media (max-width: 768px) {
+    #curriculo.pagina.ativa .container {
+        width: 98% !important;
+        height: 90vh !important;
+        padding: 10px !important;
+    }
+    
+    #curriculo h1 {
+        font-size: 1.4rem !important;
+    }
 }
 
 /*=======================
@@ -486,9 +582,6 @@ VIDEOS
     /* Deixa o botão mais apagadinho */
     text-decoration: none;
 }
-
-
-
 
 /*========================
 SOBRE MIM
@@ -566,9 +659,6 @@ CONTATO
     align-items: center;
 }
 
-
-
-
 /* ==================================
 Container da stack abaixo dos botões 
 ====================================*/
@@ -622,13 +712,14 @@ Container da stack abaixo dos botões
 
 /* INÍCIO */
 #inicio {
-    min-height: 100vh; /* ocupa pelo menos a tela toda */
+    min-height: 100vh;
+    /* ocupa pelo menos a tela toda */
 }
 
 /* PROJETOS */
 #projetos {
-    min-height: 100vh;
-    padding-top: 120px; /* dá espaço pro header não cobrir */
+    min-height: auto;
+    padding-top: 120px;
 }
 
 /* SOBRE */
@@ -642,13 +733,6 @@ Container da stack abaixo dos botões
     min-height: 100vh;
     padding-top: 120px;
 }
-
-
-
-
-
-
-
 /* ==========================================
    RESPONSIVO COMPLETO COM ANIMAÇÕES ATIVAS
 ========================================== */
@@ -821,33 +905,7 @@ Container da stack abaixo dos botões
     /* Mais rápido no clique */
 }
 
-
-
-/* Seleciona o iframe dentro da seção de currículo */
-#curriculo iframe {
-    display: none !important;
-    /* Remove o PDF da visualização no mobile */
-}
-
 /* Ajusta o container do currículo para focar no botão */
-#curriculo .conteudo {
-    min-height: 40vh;
-    /* Dá uma altura mínima para o card não ficar "esmagado" */
-    justify-content: center;
-}
-
-/* Estiliza o botão "Abrir em nova aba" para o mobile */
-#curriculo .btn-outline {
-    display: block;
-    width: 100%;
-    max-width: 280px;
-    margin: 20px auto 0;
-    padding: 16px;
-    font-size: 1.1rem;
-    background: var(--cor-primaria);
-    /* Dá cor ao botão no mobile para facilitar o clique */
-    color: white;
-}
 
 /*==================PROJETOS============*/
 /* Ajuste da seção Projetos para permitir scroll */
@@ -939,7 +997,7 @@ Container da stack abaixo dos botões
     padding: 15px;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -957,7 +1015,7 @@ Container da stack abaixo dos botões
 
 .card-projeto:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card-projeto .links {
@@ -979,14 +1037,6 @@ Container da stack abaixo dos botões
     transform: scale(1.05);
 }
 
-
-
-
-
-
-
-
-
 /* CELULAR PEQUENO */
 @media (max-width: 480px) {
     .conteudo h1 {
@@ -1004,9 +1054,11 @@ Container da stack abaixo dos botões
         white-space: normal;
         text-align: center;
     }
-       header {
-        top: 30px;
+
+    header {
+        top: 0;
     }
+
     .menu {
         padding: 10px 20px;
         gap: 15px;

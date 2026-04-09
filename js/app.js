@@ -9,16 +9,26 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // --- FUNÇÃO PARA MUDAR DE PÁGINA ---
+// --- FUNÇÃO PARA MUDAR DE PÁGINA ---
 function mostrarPagina(id){
-    // Remove 'ativa' de todas as páginas
-    document.querySelectorAll(".pagina").forEach(function(pagina){
-        pagina.classList.remove("ativa");
+    // 1. Seleciona TODAS as variações de páginas que você criou
+    const todasAsSecoes = document.querySelectorAll(".pagina, .pagina-certificado, .pagina-curriculo");
+    
+    // 2. Remove 'ativa' de absolutamente todas elas
+    todasAsSecoes.forEach(function(secao){
+        secao.classList.remove("ativa");
     });
 
-    // Ativa a página selecionada
-    document.getElementById(id).classList.add("ativa");
+    // 3. Ativa a página selecionada pelo ID
+    const alvo = document.getElementById(id);
+    if (alvo) {
+        alvo.classList.add("ativa");
+        
+        // 4. Garante que a página abra no topo (importante para o currículo)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-    // Atualiza o hash da URL sem recarregar a página
+    // 5. Atualiza o hash da URL
     window.location.hash = id;
 }
 
